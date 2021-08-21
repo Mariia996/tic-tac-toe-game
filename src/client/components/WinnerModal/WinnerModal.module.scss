@@ -1,0 +1,21 @@
+@import '../../shared/styles/base';
+
+.winner {
+  width: 250px;
+  height: 200px;
+  padding: 10px;
+  @include tablet {
+    width: 350px;
+    height: 250px;
+    padding: 20px;
+    @include flex(center, center);
+    flex-direction: column;
+  }
+  &_title {
+    color: #000;
+    margin-bottom: 20px;
+  }
+  &_btn {
+    width: 80px;
+  }
+}

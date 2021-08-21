@@ -42,23 +42,3 @@
 .inputField:focus {
   border: 1px solid var(--accent-color);
 }
-
-.btn {
-  width: 65px;
-  height: 30px;
-  border: 1px solid var(--bg-main-color);
-  border-radius: 2px;
-  background-color: var(--text-main-color);
-  cursor: pointer;
-
-  font-family: inherit;
-  font-size: 14px;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn:hover,
-.btn:focus {
-  border: 1px solid var(--accent-color);
-  color: var(--accent-color);
-}

@@ -10,14 +10,18 @@ export const check = (panel, cross, circle, player1, player2) => {
         [2, 4, 6]
     ]
 
-    let winner = '';
+    let player = '';
+    let idx = null;
 
     for (let i = 0; i < winnerIdxArr.length; i++) {
         if (panel[winnerIdxArr[i][0]] === cross && panel[winnerIdxArr[i][1]] === cross && panel[winnerIdxArr[i][2]] === cross) {
-            winner = player1
+            idx = i;
+            player = player1
         } else if (panel[winnerIdxArr[i][0]] === circle && panel[winnerIdxArr[i][1]] === circle && panel[winnerIdxArr[i][2]] === circle) {
-            winner = player2
+            idx = i;
+            player = player2
         }
     };
-    return winner;
+
+    return {player,idx};
 }

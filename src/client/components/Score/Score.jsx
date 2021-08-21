@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { usePlayer } from '../../shared/hooks/usePlayer';
 import s from './Score.module.scss';
 
@@ -25,3 +26,13 @@ const Score = ({ currentPlayer, winner }) => {
 }
 
 export default Score;
+
+Score.defaultProps = {
+    currentPlayer: '',
+    winner: ''
+}
+
+Score.propTypes = {
+    currentPlayer: PropTypes.string,
+    winner: PropTypes.string
+}

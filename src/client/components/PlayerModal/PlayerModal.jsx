@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import Button from '../../shared/components/Button';
 import { fields } from '../../assets/playerFields'
 import { usePlayer } from '../../shared/hooks/usePlayer';
+
 
 import s from './PlayerModal.module.scss';
 
@@ -18,9 +21,17 @@ const PlayerModal = ({onClose}) => {
             <form className={s.form} onSubmit={handleSubmit}>
                 <label htmlFor="player_name" className={s.label}>Select name for {fields[idx].text}</label>
                 <input id="player_name" type="text" value={idx === 1 ? formData.player2 : formData.player1} name={fields[idx].name} onChange={handleChange} className={s.inputField} />
-                <button type="submit" className={s.btn} onClick={handleClick}>Submit</button>
+                <Button type="submit" onClick={handleClick}>Submit</Button>
             </form>
         </div>);
 };
 
 export default PlayerModal;
+
+PlayerModal.defaultProps = {
+    onClose: () => {}
+}
+
+PlayerModal.propTypes = {
+    onClose: PropTypes.func
+}

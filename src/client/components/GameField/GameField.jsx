@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import GamePanel from '../GamePanel/GamePanel';
 import Score from '../Score';
 import Modal from '../../shared/components/Modal';
+import WinnerModal from '../WinnerModal';
 import circle from '../../icons/circle.png';
 import cross from '../../icons/cross.png';
 import { initialState } from './initialState';
@@ -12,6 +13,7 @@ import s from './GameField.module.scss';
 const GameField = () => {
     const [panel, setPanel] = useState(initialState);
     const [winner, setWinner] = useState('')
+    const [idxCombination, setIdxCombination] = useState(null)
 
     const { players } = usePlayer()
     const [currentPlayer, setcurrentPlayer] = useState(players.player1);
@@ -35,27 +37,39 @@ const GameField = () => {
             });
             setcurrentPlayer(players.player1);
         };
+
+    }
+
+    const resetResults = () => {
+        setPanel(initialState)
+        setcurrentPlayer(players.player1)
+        setWinner('')
+        setIdxCombination(null)
+        setOpenModal(!openModal)
     }
 
     useEffect(() => {
-        const player = check(panel, cross, circle, players.player1, players.player2);
+        const {player, idx} = check(panel, cross, circle, players.player1, players.player2);
+        console.log("🚀 ~ file: GameField.jsx ~ line 53 ~ useEffect ~ player", player)
         if (player) {
             setWinner(player);
-            setOpenModal(!openModal);
-            setPanel(initialState);
+            setIdxCombination(idx);
+            setTimeout(() => {
+                setOpenModal(!openModal)
+            }, 2000);
         }
-    }, [panel, players, openModal])
+    }, [winner, panel, players])
 
 
     return (<div className={s.gameField}>
         <div className={s.gamePanel}>
-            <GamePanel handleClick={(idx) => handleClick(idx)} panel={panel}/>
+            <GamePanel handleClick={(idx) => handleClick(idx)} panel={panel} idx={idxCombination}/>
         </div>
         <div className={s.score}>
             <Score currentPlayer={currentPlayer} winner={winner}/>
         </div>
-        <Modal onClose={() => setOpenModal(!openModal)} className={openModal ? s.modalIsOpen : ''}>
-
+        <Modal onClose={() => resetResults()} className={openModal ? s.modalIsOpen : ''}>
+            <WinnerModal winner={winner} onClose={() => resetResults()} />
         </Modal>
     </div> );
 }
