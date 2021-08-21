@@ -1,26 +1,15 @@
-import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 import s from './GamePanel.module.scss';
 
-const GamePanel = ({handleClick, panel }) => {
+const GamePanel = ({ handleClick, panel }) => {
     return (<div className={s.panel}>
-        <ul className={`${s.panel_boxesList} ${s.crosslineDiagonal}`}>
-            <div className={`${s.line_container} ${s.crosslineHorizontal}`}>
-                {panel[0].map((item, idx) => (
-                    <li key={v4()} className={s.panel_boxes} onClick={() => handleClick(0, idx)}>{item}</li>
-                ))}
-            </div>
-            <div className={`${s.line_container} ${s.crosslineHorizontal}`}>
-                {panel[1].map((item, idx)=> (
-                    <li key={v4()} className={s.panel_boxes} onClick={() => handleClick(1, idx)}>{item}</li>
-                ))}
-            </div>
-            <div className={`${s.line_container} ${s.crosslineHorizontal}`}>
-                {panel[2].map((item, idx) => (
-                    <li key={v4()} className={s.panel_boxes} onClick={() => handleClick(2, idx)}>{item}</li>
-                ))}
-            </div>
+        <ul className={`${s.panel_boxesList} ${s.crossline}`}>
+            {panel.map((item, idx) => (<div key={idx} className={s.line_container}>
+                <li className={s.panel_boxes} onClick={() => handleClick(idx)}>
+                    <img src={item} alt="" className={s.img} width="60" />
+                </li>
+            </div>))}
         </ul>
     </div> );
 }

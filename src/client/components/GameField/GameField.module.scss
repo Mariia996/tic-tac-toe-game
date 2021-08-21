@@ -22,3 +22,9 @@
     margin-right: 40px;
   }
 }
+
+.modalIsOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: visible;
+}
