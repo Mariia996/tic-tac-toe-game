@@ -1,0 +1,20 @@
+@import '../../shared/styles/base';
+
+.score {
+  font-size: 22px;
+  &_text {
+    margin-bottom: 10px;
+  }
+
+  &_player {
+    margin-bottom: 10px;
+  }
+  @include tablet {
+    font-size: 28px;
+  }
+}
+
+.currentPlayer {
+  composes: score_player;
+  text-shadow: 2px 1px 10px rgb(252, 252, 252);
+}

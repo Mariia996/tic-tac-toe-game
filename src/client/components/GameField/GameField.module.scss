@@ -1,0 +1,24 @@
+@import '../../shared/styles/base';
+
+.gameField {
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: var(--bg-secondary-color);
+  @include tablet {
+    width: 600px;
+    @include flex();
+  }
+}
+
+@include mobile-end {
+  .score {
+    margin-top: 20px;
+  }
+}
+
+@include tablet {
+  .gamePanel {
+    margin-right: 40px;
+  }
+}

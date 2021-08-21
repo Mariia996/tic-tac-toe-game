@@ -1,0 +1,15 @@
+:root {
+  --text-main-color: #ffffff;
+  --bg-main-color: #c4c4c4;
+  --bg-secondary-color: rgb(84, 95, 125);
+  --bg-third-color: rgb(68, 66, 94);
+  --accent-color: rgb(168, 85, 193);
+}
+// цвет крестика rgb(196, 196, 196)
+// цвет зачеркнуто rgb(175, 61, 76)
+// цвет полосок rgb(168, 85, 193)
+
+$mobile-end: 767px;
+$tablet: 768px;
+$tablet-end: 1279px;
+$desktop: 1280px;
