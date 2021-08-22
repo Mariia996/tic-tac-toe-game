@@ -1,6 +1,6 @@
 @import '../../shared/styles/base';
 
-.winner {
+.draw {
   width: 250px;
   height: 200px;
   padding: 10px;
@@ -11,8 +11,10 @@
     height: 250px;
     padding: 20px;
   }
-  &_title {
+  &_text {
     color: #000;
+    font-size: 20px;
+    font-weight: 700;
     margin-bottom: 20px;
   }
   &_btn {

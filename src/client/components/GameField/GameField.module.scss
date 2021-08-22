@@ -6,7 +6,7 @@
   margin: 0 auto;
   background-color: var(--bg-secondary-color);
   @include tablet {
-    width: 600px;
+    width: 550px;
     @include flex();
   }
 }

@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import GamePanel from '../GamePanel/GamePanel';
 import Score from '../Score';
 import Modal from '../../shared/components/Modal';
 import WinnerModal from '../WinnerModal';
+import DrawModal from '../DrawModal';
 import circle from '../../icons/circle.png';
 import cross from '../../icons/cross.png';
 import { initialState } from './initialState';
@@ -12,13 +13,15 @@ import s from './GameField.module.scss';
 
 const GameField = () => {
     const [panel, setPanel] = useState(initialState);
-    const [winner, setWinner] = useState('')
-    const [idxCombination, setIdxCombination] = useState(null)
-
-    const { players } = usePlayer()
+    const { players } = usePlayer();
     const [currentPlayer, setcurrentPlayer] = useState(players.player1);
 
-    const [openModal, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false);
+
+    const winner = useRef('')
+    const [idxCombination, setIdxCombination] = useState(null);
+
+    const draw = useRef(false);
 
     const handleClick = (idx) => {
         if (currentPlayer === players.player1 && panel[idx] !== circle && panel[idx] !== cross) {
@@ -37,39 +40,47 @@ const GameField = () => {
             });
             setcurrentPlayer(players.player1);
         };
-
     }
 
     const resetResults = () => {
-        setPanel(initialState)
-        setcurrentPlayer(players.player1)
-        setWinner('')
-        setIdxCombination(null)
-        setOpenModal(!openModal)
+        setPanel(initialState);
+        setcurrentPlayer(players.player1);
+        winner.current = '';
+        setIdxCombination(null);
+        draw.current = false;
+        setOpenModal(!openModal);
     }
 
     useEffect(() => {
+        console.log('useEffect_1');
         const {player, idx} = check(panel, cross, circle, players.player1, players.player2);
-        console.log("🚀 ~ file: GameField.jsx ~ line 53 ~ useEffect ~ player", player)
+        console.log("🚀 ~ file: GameField.jsx ~ line 57 ~ useEffect ~ player", player)
         if (player) {
-            setWinner(player);
+            winner.current = player;
             setIdxCombination(idx);
             setTimeout(() => {
                 setOpenModal(!openModal)
             }, 2000);
         }
-    }, [winner, panel, players])
+         if (!panel.includes(null)) {
+            draw.current = true;
+            setTimeout(() => {
+                setOpenModal(!openModal)
+            }, 2000);
+        };
 
+    }, [panel, winner.current, draw])
 
     return (<div className={s.gameField}>
         <div className={s.gamePanel}>
             <GamePanel handleClick={(idx) => handleClick(idx)} panel={panel} idx={idxCombination}/>
         </div>
         <div className={s.score}>
-            <Score currentPlayer={currentPlayer} winner={winner}/>
+            <Score currentPlayer={currentPlayer} winner={winner.current}/>
         </div>
         <Modal onClose={() => resetResults()} className={openModal ? s.modalIsOpen : ''}>
-            <WinnerModal winner={winner} onClose={() => resetResults()} />
+            {winner.current && <WinnerModal winner={winner.current} onClose={() => resetResults()} />}
+            {draw.current && !winner.current && <DrawModal onClose={() => resetResults()} />}
         </Modal>
     </div> );
 }

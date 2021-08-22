@@ -5,14 +5,12 @@
   width: 100%;
   background-color: var(--bg-third-color);
   @include tablet {
-    width: 260px;
+    width: 240px;
   }
   &_boxes {
     position: relative;
-    width: 80px;
-    height: 80px;
-    padding: 5px;
-    cursor: pointer;
+    width: 100%;
+    height: 100%;
     @include flex(center, center);
   }
   &_boxesList {
@@ -24,25 +22,32 @@
 .line_container {
   position: relative;
   @include flex(center, center);
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
   &:nth-child(n + 4)::after {
     content: '';
     position: absolute;
     top: 0;
-    left: -3px;
-    width: 107%;
+    left: -4px;
+    width: 110%;
     height: 4px;
     background-color: var(--accent-color);
     border-radius: 2px;
   }
   &:not(:nth-child(3n + 1))::before {
     content: '';
-    background-color: var(--accent-color);
-    border-radius: 2px;
     position: absolute;
     top: -4px;
     left: 0;
     width: 4px;
     height: 110%;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+  }
+  @include tablet {
+    width: 80px;
+    height: 80px;
   }
 }
 
@@ -63,7 +68,7 @@
   &Horizontal_2::before {
     content: '';
     position: absolute;
-    top: 48%;
+    top: 49%;
     left: 50%;
     width: 95%;
     height: 5px;
@@ -90,7 +95,7 @@
     position: absolute;
     top: 48%;
     left: 17%;
-    width: 100%;
+    width: 95%;
     height: 5px;
     background-color: rgb(175, 61, 76);
     border-radius: 2px;
@@ -102,7 +107,7 @@
     position: absolute;
     top: 48%;
     left: 50%;
-    width: 100%;
+    width: 95%;
     height: 5px;
     background-color: rgb(175, 61, 76);
     border-radius: 2px;
@@ -113,8 +118,8 @@
     content: '';
     position: absolute;
     top: 48%;
-    left: 83%;
-    width: 100%;
+    left: 84%;
+    width: 95%;
     height: 5px;
     background-color: rgb(175, 61, 76);
     border-radius: 2px;
@@ -126,7 +131,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 135%;
+    width: 130%;
     height: 5px;
     background-color: rgb(175, 61, 76);
     border-radius: 2px;
@@ -142,7 +147,7 @@
     height: 5px;
     background-color: rgb(175, 61, 76);
     border-radius: 2px;
-    transform: translateX(-50%) rotate(132deg);
+    transform: translateX(-50%) rotate(136deg);
     z-index: 1;
   }
 }
