@@ -1,3 +1,4 @@
+// export { winCombinations } from './winCombinations';
 export const check = (panel, cross, circle, player1, player2) => {
     const winnerIdxArr = [
         [0, 1, 2],
@@ -15,10 +16,10 @@ export const check = (panel, cross, circle, player1, player2) => {
 
     for (let i = 0; i < winnerIdxArr.length; i++) {
         if (panel[winnerIdxArr[i][0]] === cross && panel[winnerIdxArr[i][1]] === cross && panel[winnerIdxArr[i][2]] === cross) {
-            idx = i;
+            idx = i + 1;
             player = player1;
         } else if (panel[winnerIdxArr[i][0]] === circle && panel[winnerIdxArr[i][1]] === circle && panel[winnerIdxArr[i][2]] === circle) {
-            idx = i;
+            idx = i + 1;
             player = player2;
         }
     };

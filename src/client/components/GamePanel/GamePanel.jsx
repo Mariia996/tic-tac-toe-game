@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import s from './GamePanel.module.scss';
 
 const classNames = [
+    null,
     s.crosslineHorizontal_1,
     s.crosslineHorizontal_2,
     s.crosslineHorizontal_3,
@@ -15,8 +16,6 @@ const classNames = [
 ]
 
 const GamePanel = ({ handleClick, panel, idx }) => {
-console.log("🚀 ~ file: GamePanel.jsx ~ line 7 ~ GamePanel ~ idx", classNames[idx])
-
     return (<div className={s.panel}>
         <ul className={`${s.panel_boxesList} ${idx ? classNames[idx] : ''}`}>
             {panel.map((item, idx) => (

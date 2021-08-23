@@ -9,6 +9,7 @@ import cross from '../../icons/cross.png';
 import { initialState } from './initialState';
 import { usePlayer } from '../../shared/hooks/usePlayer';
 import { check } from './check';
+import { useCheckDraw } from './checkDraw';
 import s from './GameField.module.scss';
 
 const GameField = () => {
@@ -30,6 +31,7 @@ const GameField = () => {
                 arr.splice(idx, 1, cross);
                 return arr;
             });
+
             setcurrentPlayer(players.player2);
 
         } else if (currentPlayer === players.player2 && panel[idx] !== circle && panel[idx] !== cross) {
@@ -52,9 +54,7 @@ const GameField = () => {
     }
 
     useEffect(() => {
-        console.log('useEffect_1');
         const {player, idx} = check(panel, cross, circle, players.player1, players.player2);
-        console.log("🚀 ~ file: GameField.jsx ~ line 57 ~ useEffect ~ player", player)
         if (player) {
             winner.current = player;
             setIdxCombination(idx);
@@ -70,6 +70,31 @@ const GameField = () => {
         };
 
     }, [panel, winner.current, draw])
+
+
+//     const checkDraw = () => {
+//         const arr =
+//             [
+//                 [panel[0], panel[1], panel[2]],
+//                 [panel[3], panel[4], panel[5]],
+//                 [panel[6], panel[7], panel[8]],
+//                 [panel[0], panel[3], panel[6]],
+//                 [panel[1], panel[4], panel[7]],
+//                 [panel[2], panel[5], panel[8]],
+//                 [panel[0], panel[4], panel[8]],
+//                 [panel[2], panel[4], panel[6]]
+//             ];
+
+
+//     const result = arr.some(item => {
+//         console.log(item);
+//         return item.some(s => s === null)
+//     })
+
+//     return result;
+// }
+    const result = useCheckDraw(panel, currentPlayer, cross, circle);
+    console.log('result:', result);
 
     return (<div className={s.gameField}>
         <div className={s.gamePanel}>
