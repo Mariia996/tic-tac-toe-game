@@ -1,4 +1,3 @@
-// export { winCombinations } from './winCombinations';
 export const check = (panel, cross, circle, player1, player2) => {
     const winnerIdxArr = [
         [0, 1, 2],

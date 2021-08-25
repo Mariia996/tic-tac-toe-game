@@ -9,7 +9,6 @@ import cross from '../../icons/cross.png';
 import { initialState } from './initialState';
 import { usePlayer } from '../../shared/hooks/usePlayer';
 import { check } from './check';
-import { useCheckDraw } from './checkDraw';
 import s from './GameField.module.scss';
 
 const GameField = () => {
@@ -60,41 +59,16 @@ const GameField = () => {
             setIdxCombination(idx);
             setTimeout(() => {
                 setOpenModal(!openModal)
-            }, 2000);
+            }, 1500);
         }
          if (!panel.includes(null)) {
             draw.current = true;
             setTimeout(() => {
                 setOpenModal(!openModal)
-            }, 2000);
+            }, 1500);
         };
 
     }, [panel, winner.current, draw])
-
-
-//     const checkDraw = () => {
-//         const arr =
-//             [
-//                 [panel[0], panel[1], panel[2]],
-//                 [panel[3], panel[4], panel[5]],
-//                 [panel[6], panel[7], panel[8]],
-//                 [panel[0], panel[3], panel[6]],
-//                 [panel[1], panel[4], panel[7]],
-//                 [panel[2], panel[5], panel[8]],
-//                 [panel[0], panel[4], panel[8]],
-//                 [panel[2], panel[4], panel[6]]
-//             ];
-
-
-//     const result = arr.some(item => {
-//         console.log(item);
-//         return item.some(s => s === null)
-//     })
-
-//     return result;
-// }
-    const result = useCheckDraw(panel, currentPlayer, cross, circle);
-    console.log('result:', result);
 
     return (<div className={s.gameField}>
         <div className={s.gamePanel}>

@@ -20,7 +20,7 @@ const PlayerModal = ({onClose}) => {
             <h2 className={s.title}>Welcome to Tic Tac Toe Game!</h2>
             <form className={s.form} onSubmit={handleSubmit}>
                 <label htmlFor="player_name" className={s.label}>Select name for {fields[idx].text}</label>
-                <input id="player_name" type="text" value={idx === 1 ? formData.player2 : formData.player1} name={fields[idx].name} onChange={handleChange} className={s.inputField} />
+                <input id="player_name" type="text" value={idx === 0 ? formData.player1 : formData.player2} name={fields[idx].name} onChange={handleChange} className={s.inputField} />
                 <Button type="submit" onClick={handleClick}>Submit</Button>
             </form>
         </div>);

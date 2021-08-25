@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 import s from './GamePanel.module.scss';
@@ -19,7 +20,7 @@ const GamePanel = ({ handleClick, panel, idx }) => {
     return (<div className={s.panel}>
         <ul className={`${s.panel_boxesList} ${idx ? classNames[idx] : ''}`}>
             {panel.map((item, idx) => (
-            <div key={idx} className={s.line_container} onClick={() => handleClick(idx)}>
+            <div key={v4()} className={s.line_container} onClick={() => handleClick(idx)}>
                 <li className={s.panel_boxes} >
                     <img src={item} alt="" className={s.img} width="60" />
                 </li>
